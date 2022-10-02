@@ -47,6 +47,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F645B47628E99E3E0019793E /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				F6797A4828E9970D00F6C9F0 /* Assets.xcassets */,
+				F6797A4A28E9970D00F6C9F0 /* LaunchScreen.storyboard */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		F6797A3328E9970C00F6C9F0 = {
 			isa = PBXGroup;
 			children = (
@@ -66,13 +75,12 @@
 		F6797A3E28E9970C00F6C9F0 /* CommunityApp */ = {
 			isa = PBXGroup;
 			children = (
+				F6797A4D28E9970D00F6C9F0 /* Info.plist */,
+				F645B47628E99E3E0019793E /* Resource */,
 				F6797A5628E9976000F6C9F0 /* Data */,
 				F6797A5528E9975800F6C9F0 /* Application */,
 				F6797A5428E9975000F6C9F0 /* Domain */,
 				F6797A5328E9974600F6C9F0 /* Presentaion */,
-				F6797A4828E9970D00F6C9F0 /* Assets.xcassets */,
-				F6797A4A28E9970D00F6C9F0 /* LaunchScreen.storyboard */,
-				F6797A4D28E9970D00F6C9F0 /* Info.plist */,
 			);
 			path = CommunityApp;
 			sourceTree = "<group>";
