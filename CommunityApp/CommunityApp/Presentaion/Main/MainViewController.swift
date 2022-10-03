@@ -22,7 +22,7 @@ class MainViewController: UIViewController {
         text.translatesAutoresizingMaskIntoConstraints = false
 
         // MARK: UI Component attribute setup
-        text.text = "Base Project"
+        text.text = "기본 프로젝트"
 
         // MARK: UI Component Layout setup
         text.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -35,7 +35,7 @@ class MainViewController: UIViewController {
 
         button.translatesAutoresizingMaskIntoConstraints = false
 
-        button.setTitle("Detail Page", for: .normal)
+        button.setTitle("상세 페이지", for: .normal)
         button.setTitleColor(.blue, for: .normal)
         button.addTarget(self, action: #selector(btnClicked), for: .touchDown)
         
