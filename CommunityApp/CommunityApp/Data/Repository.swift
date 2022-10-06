@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+class FeedsRepository {
+    
+    func fetchFeedsPublisher {
+        
+    }
+    
+}

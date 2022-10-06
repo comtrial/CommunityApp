@@ -16,7 +16,7 @@ class DetailViewController: UIViewController {
         text.translatesAutoresizingMaskIntoConstraints = false
 
         // MARK: UI Component attribute setup
-        text.text = "Detail Page"
+        text.text = "상세 페이지"
 
         // MARK: UI Component Layout setup
         text.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
