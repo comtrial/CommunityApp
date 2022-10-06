@@ -7,7 +7,7 @@ class FeedsUseCase {
         self.feedsRespository = feedsRespository
     }
     
-    func fetchFeedsPublisher(page: Int) -> AnyPublisher<FeedsResult, Error> {
-        return feedsRespository.fetchFeedsPublisher()
+    func fetchFeedsPublisher(page: Int) -> AnyPublisher<HomepageService, Error> {
+        return feedsRespository.fetchFeeds()
     }
 }
