@@ -1,11 +1,10 @@
-
 import Foundation
 
-class ArticleDetailRepository {
+class CommentRepository {
 
-        func fetchArticleDetailPublisher() {
-            for detailPageNumber in 1...4 {
-            let urlString = "https://38c0eb6a-ec24-4aa3-8eaf-db9ab721a74a.mock.pstmn.io/api/v1/post/detail/\(detailPageNumber)"// \(detailPAgeNumber) 보간법으로 api데이터 따로따로 받아올 수 있게
+    func fetchCommentPublisher() {
+        for commentPageNumber in 1...4 {
+            let urlString = "https://38c0eb6a-ec24-4aa3-8eaf-db9ab721a74a.mock.pstmn.io/api/v1/comment/\(commentPageNumber)"// \(commentPAgeNumber) 보간법으로 api데이터 따로따로 받아올 수 있게
             let url = URL(string : urlString)
 
             guard url != nil else {
@@ -21,8 +20,8 @@ class ArticleDetailRepository {
 
 
                     do {
-                        let articleDetailService = try decoder.decode(ArticleDetailService.self, from: data!)
-                        print(articleDetailService)
+                        let commentService = try decoder.decode(CommentService.self, from: data!)
+                        print(commentService)
                     }
                     catch {
                         print("Error parsing the Json")

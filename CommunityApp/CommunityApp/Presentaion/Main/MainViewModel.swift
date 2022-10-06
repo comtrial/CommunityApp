@@ -5,7 +5,7 @@ import Combine
 class MainViewModel {
     let usecase: FeedsUseCase
     
-    @Published var feeds: [Contents]?
+    @Published var feeds: [FeedService]?
     @Published var errMessage: String?
     
     var subscriber: Set<AnyCancellable> = .init()
@@ -30,8 +30,9 @@ class MainViewModel {
                 print("err: \(error)")
             case .finished: break
             }
-        } receiveValue: { HomepageService in
-            print(HomepageService)
+        } receiveValue: { FeedService in
+            print(FeedService)
         }.store(in: &subscriber)
     }
 }
+
