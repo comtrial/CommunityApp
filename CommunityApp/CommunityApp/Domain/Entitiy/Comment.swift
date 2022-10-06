@@ -14,3 +14,4 @@ struct CommentService : Codable {
     var contents : [Comment]
 
 }
+
