@@ -21,7 +21,7 @@ class ArticleDetailRepository {
 
 
                     do {
-                        let articleDetailService = try decoder.decode(ArticleDetailService.self, from: data!)
+                        let articleDetailService = try decoder.decode(DetailArticleService.self, from: data!)
                         print(articleDetailService)
                     }
                     catch {
@@ -33,3 +33,4 @@ class ArticleDetailRepository {
         }
     }
 }
+

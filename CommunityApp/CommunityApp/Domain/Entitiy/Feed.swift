@@ -1,6 +1,6 @@
 import Foundation
 
-struct Contents : Codable {
+struct Article : Codable {// 피드에 있는 게시물
     var thumbailPost : String
     var author : String
     var commentsNum : Int
@@ -11,17 +11,18 @@ struct Contents : Codable {
     var id : Int
 }
 
-struct HomepagePagination : Codable {
+struct Pagination : Codable {
     var currentPage : Int
     var totalPage : Int
     var perPage : Int
     var totalPost : Int
 }
 
-struct HomepageService : Codable {
+struct FeedService : Codable {
     var success : Bool
     var status : Int
-    var pagination : HomepagePagination
-    var contents : [Contents]
-
+    var pagination : Pagination
+    var contents : [Article]
 }
+
+//Feed 정의 : 사람들이 사진과 동영상을 공유하고, 커뮤니티와 소통하고, 관심 있는 콘텐츠를 둘러볼 수 있는 모바일에 최적화된 랜딩 페이지(랜딩 : 착륙)

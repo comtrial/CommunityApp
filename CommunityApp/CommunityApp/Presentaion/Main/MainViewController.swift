@@ -8,6 +8,7 @@ class MainViewController: UIViewController {
     
     init(viewModel: MainViewModel) {
         self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -17,6 +18,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.load(page: 1)
         configureUI()
     }
     

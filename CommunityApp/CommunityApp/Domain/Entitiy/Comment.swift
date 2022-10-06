@@ -14,3 +14,7 @@ struct CommentService : Codable {
     var contents : [Comment]
 
 }
+
+
+// MainPage -> FeedPage
+// ArticleDetailPage
