@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1C4824AC28EE946600C6DE45 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4824AB28EE946600C6DE45 /* Feed.swift */; };
 		1C4824AF28EE951700C6DE45 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4824AE28EE951700C6DE45 /* Comment.swift */; };
-		1C4824B128EE957000C6DE45 /* DetailArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4824B028EE957000C6DE45 /* DetailArticle.swift */; };
+		1C4824B128EE957000C6DE45 /* DetailFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4824B028EE957000C6DE45 /* DetailFeed.swift */; };
 		1C4824B428EE95A300C6DE45 /* FeedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4824B328EE95A300C6DE45 /* FeedRepository.swift */; };
 		1C4824B628EE95C800C6DE45 /* DetailArticleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4824B528EE95C800C6DE45 /* DetailArticleRepository.swift */; };
 		1C4824B828EE95EE00C6DE45 /* CommentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4824B728EE95EE00C6DE45 /* CommentRepository.swift */; };
@@ -29,7 +29,7 @@
 /* Begin PBXFileReference section */
 		1C4824AB28EE946600C6DE45 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		1C4824AE28EE951700C6DE45 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		1C4824B028EE957000C6DE45 /* DetailArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticle.swift; sourceTree = "<group>"; };
+		1C4824B028EE957000C6DE45 /* DetailFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeed.swift; sourceTree = "<group>"; };
 		1C4824B328EE95A300C6DE45 /* FeedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRepository.swift; sourceTree = "<group>"; };
 		1C4824B528EE95C800C6DE45 /* DetailArticleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticleRepository.swift; sourceTree = "<group>"; };
 		1C4824B728EE95EE00C6DE45 /* CommentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRepository.swift; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 			children = (
 				1C4824AB28EE946600C6DE45 /* Feed.swift */,
 				1C4824AE28EE951700C6DE45 /* Comment.swift */,
-				1C4824B028EE957000C6DE45 /* DetailArticle.swift */,
+				1C4824B028EE957000C6DE45 /* DetailFeed.swift */,
 			);
 			path = Entitiy;
 			sourceTree = "<group>";
@@ -265,7 +265,7 @@
 				F6797A4028E9970C00F6C9F0 /* AppDelegate.swift in Sources */,
 				1C4824B628EE95C800C6DE45 /* DetailArticleRepository.swift in Sources */,
 				F6797A5E28E999F800F6C9F0 /* DetailCoordinator.swift in Sources */,
-				1C4824B128EE957000C6DE45 /* DetailArticle.swift in Sources */,
+				1C4824B128EE957000C6DE45 /* DetailFeed.swift in Sources */,
 				1C4824B828EE95EE00C6DE45 /* CommentRepository.swift in Sources */,
 				F6797A5B28E9989E00F6C9F0 /* MainCoordinator.swift in Sources */,
 				1C4824AF28EE951700C6DE45 /* Comment.swift in Sources */,
