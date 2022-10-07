@@ -2,6 +2,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     let viewModel: MainViewModel
+    var coordinator: MainCoordinator?
     
     private var text: UILabel = UILabel()
     private var button: UIButton = UIButton()
@@ -59,7 +60,8 @@ class MainViewController: UIViewController {
     }
     
     @objc func btnClicked() {
-        DetailCoordinator(nvc: self.navigationController!).start()
+        coordinator?.pushToDetail(detailFeedIdx: 1)
+//        DetailCoordinator(nvc: self.navigationController!).start()
     }
 
 }

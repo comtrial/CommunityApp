@@ -14,6 +14,14 @@ class MainCoordinator: Coordinator {
         let rootViewController = MainViewController(viewModel: viewModel)
 
         // let rootViewController = MainViewController()
+        rootViewController.coordinator = self
         navigationController?.setViewControllers([rootViewController], animated: true)
+    }
+    
+    func pushToDetail(detailFeedIdx: Int) {
+        let repository = DetailFeedRepository()
+        let viewModel = DetailViewModel(repository: repository)
+        let vc = DetailViewController(viewModel: viewModel)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
