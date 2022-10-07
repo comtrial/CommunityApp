@@ -5,7 +5,7 @@ import Combine
 class MainViewModel {
     let usecase: FeedsUseCase
     
-    @Published var feeds: [FeedService]?
+    @Published var feeds: [Feed]?
     @Published var errMessage: String?
     
     var subscriber: Set<AnyCancellable> = .init()
@@ -16,14 +16,6 @@ class MainViewModel {
     }
     
     func load(page: Int) {
-//        usecase.fetchFeedsPublisher(page: page) { result in
-//            switch result {
-//            case .success:
-//                print("success...")
-//            case .failure:
-//                print("fail...")
-//            }
-//        }
         usecase.fetchFeedsPublisher(page: 1).sink{ completion in
             switch completion {
             case .failure(let error):
@@ -32,6 +24,7 @@ class MainViewModel {
             }
         } receiveValue: { FeedService in
             print(FeedService)
+            self.feeds = FeedService.feeds
         }.store(in: &subscriber)
     }
 }
