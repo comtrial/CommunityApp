@@ -24,7 +24,7 @@ class MainViewModel {
             }
         } receiveValue: { FeedService in
             print(FeedService)
-            self.feeds = FeedService.feeds
+            self.feeds = FeedService.contents
         }.store(in: &subscriber)
     }
 }
