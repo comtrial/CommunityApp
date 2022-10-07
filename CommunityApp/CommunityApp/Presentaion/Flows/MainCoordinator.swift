@@ -19,7 +19,7 @@ class MainCoordinator: Coordinator {
     }
     
     func pushToDetail(detailFeedIdx: Int) {
-        let repository = DetailFeedRepository()
+        let repository = DetailFeedRepository(detailFeedIdx: detailFeedIdx)
         let viewModel = DetailViewModel(repository: repository)
         let vc = DetailViewController(viewModel: viewModel)
         navigationController?.pushViewController(vc, animated: true)

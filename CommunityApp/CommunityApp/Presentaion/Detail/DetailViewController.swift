@@ -16,6 +16,8 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        
+        viewModel.fetchDetailFeedService()
     }
     
     func configureUI() {
