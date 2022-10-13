@@ -9,13 +9,7 @@ struct Feed : Codable {// 피드에 있는 게시물
     var thumbnailimages : [String]? // "thumbnailimages" 안에 nil 값이 있기 때문에 optional 처리 해줌
     var moreButton : Bool
     var id : Int
-    
-//    enum CodingKeys : String, CodingKey {
-//        case thumbailPost, author, commentsNum, writtenAt, thumbnailimages, moreButton, id
-//         case type = "tag"
-//    }
 }
-
 
 struct Pagination : Codable {
     var currentPage : Int
