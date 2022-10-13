@@ -4,7 +4,7 @@ struct Comment : Codable {
     var comment : String
     var author : String
     var writtenAt : String
-    var image : String
+    var image : String?
     var id : Int
 }
 
@@ -14,3 +14,4 @@ struct CommentService : Codable {
     var contents : [Comment]
 
 }
+
