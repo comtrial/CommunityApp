@@ -11,5 +11,3 @@ struct DetailFeedService : Codable {
     var images : [String]?
     var id : Int
 }
-
-

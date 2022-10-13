@@ -10,10 +10,6 @@ struct Feed : Codable {// 피드에 있는 게시물
     var moreButton : Bool
     var id : Int
     
-//    enum CodingKeys : String, CodingKey {
-//        case thumbailPost, author, commentsNum, writtenAt, thumbnailimages, moreButton, id
-//         case type = "tag"
-//    }
 }
 
 
