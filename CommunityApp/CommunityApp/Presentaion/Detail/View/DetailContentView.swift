@@ -20,11 +20,78 @@ class DetailContentView: UIView {
         headerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: topAnchor),
-            headerView.bottomAnchor.constraint(equalTo: bottomAnchor),
             headerView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            headerView.rightAnchor.constraint(equalTo: rightAnchor)
-            
+            headerView.rightAnchor.constraint(equalTo: rightAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 80)
         ])
+        
+        let contentView = drawContentView()
+        addSubview(contentView)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            contentView.heightAnchor.constraint(equalToConstant: 200)
+        ])
+        
+        let footerView = drawFooterView()
+        addSubview(footerView)
+        footerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            footerView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 8),
+//            footerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            footerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            footerView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+    
+    func drawFooterView() -> UIView {
+        let footerView = UIView()
+        let commentNumLabel = UILabel()
+        
+        commentNumLabel.text = "댓글 \(detailFeedService?.commentsNum)"
+        commentNumLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        
+        footerView.addSubview(commentNumLabel)
+        commentNumLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            commentNumLabel.topAnchor.constraint(equalTo: footerView.topAnchor),
+//            commentNumLabel.leadingAnchor.constraint(equalTo: footerView.leadingAnchor),
+            commentNumLabel.trailingAnchor.constraint(equalTo: footerView.trailingAnchor),
+            commentNumLabel.bottomAnchor.constraint(equalTo: footerView.bottomAnchor)
+        ])
+        
+        return footerView
+    }
+    
+    func drawContentView() -> UIView {
+        let contentView = UIView()
+        let contentTextView = UITextView()
+        
+        let paraStyle = NSMutableParagraphStyle()
+        let fontSize: CGFloat =  16
+        let lineHeight = fontSize * 1.6
+        
+        paraStyle.minimumLineHeight = lineHeight
+        paraStyle.maximumLineHeight = lineHeight
+        
+        contentTextView.attributedText = NSAttributedString(string: detailFeedService?.post ?? "", attributes: [
+            .paragraphStyle: paraStyle
+        ])
+        contentTextView.font = .systemFont(ofSize: fontSize)
+        contentTextView.isEditable = false
+        
+        contentView.addSubview(contentTextView)
+        contentTextView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            contentTextView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
+            contentTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            contentTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            contentTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
+        
+        return contentView
     }
     
     func drawHeaderView() -> UIView {
