@@ -1,6 +1,6 @@
 import Foundation
 
-struct ArticleDetailService : Codable {
+struct DetailFeedService : Codable {
     var success : Bool
     var status : Int
     var post : String
@@ -10,5 +10,6 @@ struct ArticleDetailService : Codable {
     var tag : String
     var images : [String]?
     var id : Int
-
 }
+
+
