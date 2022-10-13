@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C419FCF28F7E06200A3B43F /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C419FCE28F7E06200A3B43F /* MainViewCell.swift */; };
 		1C4824AC28EE946600C6DE45 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4824AB28EE946600C6DE45 /* Feed.swift */; };
 		1C4824AF28EE951700C6DE45 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4824AE28EE951700C6DE45 /* Comment.swift */; };
 		1C4824B128EE957000C6DE45 /* DetailFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4824B028EE957000C6DE45 /* DetailFeed.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C419FCE28F7E06200A3B43F /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
 		1C4824AB28EE946600C6DE45 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		1C4824AE28EE951700C6DE45 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		1C4824B028EE957000C6DE45 /* DetailFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeed.swift; sourceTree = "<group>"; };
@@ -75,6 +77,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C419FCD28F7E05200A3B43F /* MainViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				1C419FCE28F7E06200A3B43F /* MainViewCell.swift */,
+			);
+			path = MainViewCell;
+			sourceTree = "<group>";
+		};
 		1C4824AD28EE946B00C6DE45 /* Entitiy */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +210,7 @@
 		F6797A5C28E9992900F6C9F0 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				1C419FCD28F7E05200A3B43F /* MainViewCell */,
 				F6797A4328E9970C00F6C9F0 /* MainViewController.swift */,
 				F645B48028EC369C0019793E /* MainViewModel.swift */,
 			);
@@ -327,6 +338,7 @@
 				1C4824AF28EE951700C6DE45 /* Comment.swift in Sources */,
 				1C4824AC28EE946600C6DE45 /* Feed.swift in Sources */,
 				F6797A4228E9970C00F6C9F0 /* SceneDelegate.swift in Sources */,
+				1C419FCF28F7E06200A3B43F /* MainViewCell.swift in Sources */,
 				F6797A6128E99A0F00F6C9F0 /* DetailViewController.swift in Sources */,
 				F645B48128EC369C0019793E /* MainViewModel.swift in Sources */,
 			);

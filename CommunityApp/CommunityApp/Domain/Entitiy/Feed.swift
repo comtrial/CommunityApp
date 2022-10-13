@@ -9,7 +9,10 @@ struct Feed : Codable {// 피드에 있는 게시물
     var thumbnailimages : [String]? // "thumbnailimages" 안에 nil 값이 있기 때문에 optional 처리 해줌
     var moreButton : Bool
     var id : Int
+    
+
 }
+
 
 struct Pagination : Codable {
     var currentPage : Int
@@ -25,4 +28,4 @@ struct FeedService : Codable {
     var contents : [Feed]
 }
 
-//Feed 정의 : 사람들이 사진과 동영상을 공유하고, 커뮤니티와 소통하고, 관심 있는 콘텐츠를 둘러볼 수 있는 모바일에 최적화된 랜딩 페이지!
+
