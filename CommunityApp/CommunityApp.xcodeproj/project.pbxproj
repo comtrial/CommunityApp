@@ -80,9 +80,9 @@
 		1C4824AD28EE946B00C6DE45 /* Entitiy */ = {
 			isa = PBXGroup;
 			children = (
-				1C4824AB28EE946600C6DE45 /* Feed.swift */,
 				1C4824AE28EE951700C6DE45 /* Comment.swift */,
 				1C4824B028EE957000C6DE45 /* DetailFeed.swift */,
+				1C4824AB28EE946600C6DE45 /* Feed.swift */,
 			);
 			path = Entitiy;
 			sourceTree = "<group>";
@@ -90,9 +90,9 @@
 		1C4824B228EE958900C6DE45 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				1C4824B328EE95A300C6DE45 /* FeedRepository.swift */,
-				1C4824B528EE95C800C6DE45 /* DetailFeedRepository.swift */,
 				1C4824B728EE95EE00C6DE45 /* CommentRepository.swift */,
+				1C4824B528EE95C800C6DE45 /* DetailFeedRepository.swift */,
+				1C4824B328EE95A300C6DE45 /* FeedRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -201,8 +201,8 @@
 			isa = PBXGroup;
 			children = (
 				F6797A5828E9988200F6C9F0 /* Coordinator.swift */,
-				F6797A5A28E9989E00F6C9F0 /* MainCoordinator.swift */,
 				F6797A5D28E999F800F6C9F0 /* DetailCoordinator.swift */,
+				F6797A5A28E9989E00F6C9F0 /* MainCoordinator.swift */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -210,9 +210,9 @@
 		F6797A5C28E9992900F6C9F0 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				1CC4B62228F7C97C007E625D /* MainViewCell */,
 				F6797A4328E9970C00F6C9F0 /* MainViewController.swift */,
 				F645B48028EC369C0019793E /* MainViewModel.swift */,
+				1CC4B62228F7C97C007E625D /* MainViewCell */,
 			);
 			path = Main;
 			sourceTree = "<group>";
