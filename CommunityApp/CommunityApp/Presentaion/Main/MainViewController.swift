@@ -2,6 +2,7 @@ import UIKit
 import Combine
 
 class MainViewController: UIViewController {
+    var coordinator: MainCoordinator?
     let viewModel: MainViewModel
     var subscriber: Set<AnyCancellable> = .init()
 
@@ -62,7 +63,7 @@ class MainViewController: UIViewController {
 
 
 
-extension MainViewController:  UITableViewDataSource, UITableViewDelegate {
+extension MainViewController:  UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         return viewModel.feeds.count
@@ -80,6 +81,14 @@ extension MainViewController:  UITableViewDataSource, UITableViewDelegate {
         cell.thumbnailPost.text = viewModel.feeds[indexPath.row].thumbailPost
 
         return cell
+    }
+}
+
+extension MainViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item =   viewModel.feeds[indexPath.row]
+        coordinator?.pushToDetail(detailFeedIdx: viewModel.feeds[indexPath.row].id)
     }
 }
 

@@ -14,7 +14,7 @@ class MainCoordinator: Coordinator {
         let rootViewController = MainViewController(viewModel: viewModel)
 
         // let rootViewController = MainViewController()
-        //  rootViewController.coordinator = self
+        rootViewController.coordinator = self
         navigationController?.setViewControllers([rootViewController], animated: true)
     }
     
