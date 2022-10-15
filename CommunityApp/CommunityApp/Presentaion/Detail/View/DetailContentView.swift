@@ -50,7 +50,8 @@ class DetailContentView: UIView {
         let footerView = UIView()
         let commentNumLabel = UILabel()
         
-        commentNumLabel.text = "댓글 \(detailFeedService?.commentsNum)"
+        let commentNum = detailFeedService?.commentsNum ?? 0
+        commentNumLabel.text = "댓글 \(commentNum)"
         commentNumLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         
         footerView.addSubview(commentNumLabel)

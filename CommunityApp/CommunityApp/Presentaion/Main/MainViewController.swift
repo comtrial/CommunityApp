@@ -76,7 +76,7 @@ extension MainViewController:  UITableViewDataSource {
         cell.commentsNum.text = "댓글 : \(viewModel.feeds[indexPath.row].commentsNum)"
         cell.writtenAt.text = viewModel.feeds[indexPath.row].writtenAt
         cell.taglabel.text = viewModel.feeds[indexPath.row].tag
-        cell.thumbnailPost.text = viewModel.feeds[indexPath.row].thumbailPost
+        cell.thumbnailPost.text = viewModel.feeds[indexPath.row].thumbnailPost
 
         return cell
     }

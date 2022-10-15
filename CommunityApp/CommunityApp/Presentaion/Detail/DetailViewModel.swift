@@ -45,12 +45,12 @@ class DetailViewModel {
     }
     
     func createComment(comment: String) {
-        let newComment = Comment(comment: comment,
-                             author: "me",
-                             writtenAt: "방금전",
-                             image: nil,
-                             id: 66)
-        
-        self.comments.append(newComment)
+//        let newComment = Comment(comment: comment,
+//                             author: "me",
+//                             writtenAt: "방금전",
+//                             image: nil,
+//                             id: 66)
+//
+//        self.comments.append(newComment)
     }
 }

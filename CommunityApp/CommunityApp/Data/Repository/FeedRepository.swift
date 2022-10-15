@@ -5,7 +5,7 @@ class FeedsRepository {
 
 
     func fetchFeedsPublisher() -> AnyPublisher<FeedService, Error> {
-        let urlString = "https://38c0eb6a-ec24-4aa3-8eaf-db9ab721a74a.mock.pstmn.io/api/v1/home"
+        let urlString = "https://9qedenmbo3.execute-api.ap-northeast-2.amazonaws.com/api/v1/home"
         
         let url = URL(string: urlString)!
         

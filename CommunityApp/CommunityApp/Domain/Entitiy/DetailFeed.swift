@@ -2,7 +2,7 @@ import Foundation
 
 struct DetailFeedService : Codable {
     var success : Bool
-    var status : Int
+    var status : String
     var post : String
     var author : String
     var commentsNum : Int
