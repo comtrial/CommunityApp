@@ -7,22 +7,17 @@ class MainViewCell: UITableViewCell, UITableViewDelegate {
     
 
     lazy var thumbnailPost : UILabel = {
-       let thumbnailPost = UILabel()
-       thumbnailPost.font = UIFont.boldSystemFont(ofSize: 16)
+        let thumbnailPost = UILabel()
+        thumbnailPost.font = UIFont.boldSystemFont(ofSize: 16)
         thumbnailPost.numberOfLines = 3
-       return thumbnailPost
-    }()  //3줄 넘어서부터는 더보기로 구현
-    
+        return thumbnailPost
+    }()
     lazy var author = UILabel()
-    
     lazy var commentsNum = UILabel()
-    
     lazy var writtenAt : UILabel = {
         let writtenAt = UILabel()
         writtenAt.font = UIFont.boldSystemFont(ofSize: 12)
-        
         return writtenAt
-    
     }()
         
     lazy var taglabel : UILabel = {
@@ -33,13 +28,9 @@ class MainViewCell: UITableViewCell, UITableViewDelegate {
         return taglabel
     }()
     
-//    let thumbnailImage = UIImageView() //MARK
-   // let moreButton = UIButton()
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        layout()
-        
+        configureUI()
     }
     
     
@@ -47,8 +38,7 @@ class MainViewCell: UITableViewCell, UITableViewDelegate {
         fatalError("Error")
     }
     
-    func layout() {
-//            self.addSubview(thumbnailImage)
+    func configureUI() {
             self.addSubview(author)
             self.addSubview(thumbnailPost)
             self.addSubview(taglabel)
@@ -57,24 +47,18 @@ class MainViewCell: UITableViewCell, UITableViewDelegate {
             
         thumbnailPost.translatesAutoresizingMaskIntoConstraints = false
         author.translatesAutoresizingMaskIntoConstraints = false
-//        thumbnailImage.translatesAutoresizingMaskIntoConstraints = false
         taglabel.translatesAutoresizingMaskIntoConstraints = false
         commentsNum.translatesAutoresizingMaskIntoConstraints = false
         writtenAt.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            // 2
+           
             taglabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 15),
             taglabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             
             thumbnailPost.topAnchor.constraint(equalTo: taglabel.bottomAnchor, constant: 15),
             thumbnailPost.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             thumbnailPost.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            
-//            thumbnailImage.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-//            thumbnailImage.topAnchor.constraint(equalTo: thumbnailPost.bottomAnchor, constant: 20),
-//            thumbnailImage.widthAnchor.constraint(equalToConstant: 150),
-//            thumbnailImage.heightAnchor.constraint(equalToConstant: 150),
                         
             commentsNum.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             commentsNum.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15),
@@ -97,18 +81,6 @@ class MainViewCell: UITableViewCell, UITableViewDelegate {
         }
     
         
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//        self.backgroundColor = .gray
-//        self.contentView.background = .blue
-//    }
-//
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
     override func layoutSubviews() {
             super.layoutSubviews()
 

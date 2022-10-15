@@ -11,11 +11,9 @@ class MainViewController: UIViewController {
         tableView.rowHeight = 300
         return tableView
     }()
-
     let loadingView = LoadingView()
 
 
-// MARK
     init(viewModel: MainViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -25,13 +23,12 @@ class MainViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
-        viewModel.load(page: 1) //MARK 무조건 여기가 문제다 무조건!
+        viewModel.load(page: 1)
         attribute()
-        setTable()
+        configureUI()
         view.backgroundColor = .white
     }
 
@@ -41,7 +38,8 @@ class MainViewController: UIViewController {
         tableView.dataSource = self
     }
 
-    func setTable(){
+    func configureUI(){
+        // MARK: TableViiew
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
@@ -62,7 +60,7 @@ class MainViewController: UIViewController {
 }
 
 
-
+// MARK: tableView DataProcess
 extension MainViewController:  UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
@@ -73,7 +71,7 @@ extension MainViewController:  UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: MainViewCell.cellId, for: indexPath) as! MainViewCell
 
 
-//        cell.thumbnailImage.image = viewModel.feeds![indexPath.row].thumbnailimages.map{ $0 }  //MARK
+//        cell.thumbnailImage.image = viewModel.feeds![indexPath.row].thumbnailimages.map{ $0 } 
         cell.author.text = viewModel.feeds[indexPath.row].author
         cell.commentsNum.text = "댓글 : \(viewModel.feeds[indexPath.row].commentsNum)"
         cell.writtenAt.text = viewModel.feeds[indexPath.row].writtenAt
@@ -87,7 +85,7 @@ extension MainViewController:  UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item =   viewModel.feeds[indexPath.row]
+        let item = viewModel.feeds[indexPath.row]
         coordinator?.pushToDetail(detailFeedIdx: viewModel.feeds[indexPath.row].id)
     }
 }
