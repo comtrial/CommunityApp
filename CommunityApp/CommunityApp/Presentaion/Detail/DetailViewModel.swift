@@ -52,7 +52,5 @@ class DetailViewModel {
                              id: 66)
         
         self.comments.append(newComment)
-        
-        
     }
 }

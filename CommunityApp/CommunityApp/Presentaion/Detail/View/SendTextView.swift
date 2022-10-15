@@ -9,7 +9,7 @@ import UIKit
 
 class SendTextView: UIView {
     
-    let typingPlaceholder = "typing to remember"
+    let typingPlaceholder = "댓글을 입력하세요"
     
     var textView = UITextView()
     var button = UIButton()
@@ -52,7 +52,7 @@ class SendTextView: UIView {
         let buttonUIImage = UIImage(systemName: "arrow.right", withConfiguration: buttonConfiguration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
         
         button.setImage(buttonUIImage, for: .normal)
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = .lightGray
         button.layer.cornerRadius = 20
         
         NSLayoutConstraint.activate([

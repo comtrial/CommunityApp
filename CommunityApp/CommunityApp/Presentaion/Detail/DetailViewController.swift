@@ -5,6 +5,8 @@ class DetailViewController: UIViewController {
     let viewModel: DetailViewModel
     var subscriber: Set<AnyCancellable> = .init()
     
+    let loadingView = LoadingView()
+    
     let commentsView = CommentListView()
     let sendTextView = SendTextView()
     
@@ -20,13 +22,12 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        loadingView.drawLoadingView(view: view)
         setupKeyboardHiding()
         viewModel.fetchDetailFeedService()
         viewModel.fetchComments()
-        configureUI()
     }
     
-    let loadingView = LoadingView()
     
     func configureUI() {
         view.backgroundColor = .white
@@ -39,8 +40,8 @@ class DetailViewController: UIViewController {
         NSLayoutConstraint.activate([
             detailContentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
             detailContentView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 14),
-            detailContentView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 14),
-            detailContentView.heightAnchor.constraint(equalToConstant: 200)
+            detailContentView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -14),
+            detailContentView.heightAnchor.constraint(equalToConstant: 300)
         ])
         
         // MARK: CommentsView
@@ -68,20 +69,17 @@ class DetailViewController: UIViewController {
             sendTextView.heightAnchor.constraint(equalToConstant: 80)
         ])
         
-        // MARK: LoadingView
-        view.addSubview(loadingView)
-        loadingView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            loadingView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loadingView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-        ])
     }
     
     func bind() {
         viewModel.$loading.sink { loading in
             self.loadingView.isHidden = !loading
-            self.configureUI()
-            self.commentsView.tableView.reloadData()
+            
+            if loading == false {
+                self.configureUI()
+                self.commentsView.tableView.reloadData()
+            }
+
             print(loading)
         }.store(in: &subscriber)
     }
@@ -103,12 +101,21 @@ extension DetailViewController: UITextViewDelegate {
             textView.textColor = .gray
         }
     }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        guard let currentText: String = textView.text else { return }
+        
+        if currentText != sendTextView.typingPlaceholder && !currentText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            sendTextView.button.backgroundColor = .orange
+        } else {
+            sendTextView.button.backgroundColor = .lightGray
+        }
+    }
 }
 
 // MARK: slide up SendTextView when keyboar show
 extension DetailViewController {
     @objc func keyboardWillHide(notification: NSNotification) {
-        print("hide")
         let sendTextViewHeight = self.sendTextView.frame.height
         self.sendTextView.frame.origin.y = view.frame.height - sendTextViewHeight
     }
@@ -127,10 +134,8 @@ extension DetailViewController {
             let newFrameY = (keyboardTopY - sendTextViewHeight + 36)
             self.sendTextView.frame.origin.y = newFrameY
         }
-        
-        print("called")
-        
     }
+    
     func setupKeyboardHiding() {
         print("keyboard setup done")
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)

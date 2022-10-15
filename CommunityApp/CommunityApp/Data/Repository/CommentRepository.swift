@@ -10,8 +10,7 @@ class CommentRepository {
     
     
     func fetchCommentPublisher() -> AnyPublisher<CommentService, Error> {
-//        let urlString = "https://38c0eb6a-ec24-4aa3-8eaf-db9ab721a74a.mock.pstmn.io/api/v1/comment/\(detailFeedIdx)"
-        let urlString = "https://38c0eb6a-ec24-4aa3-8eaf-db9ab721a74a.mock.pstmn.io/api/v1/comment/1"
+        let urlString = "https://38c0eb6a-ec24-4aa3-8eaf-db9ab721a74a.mock.pstmn.io/api/v1/comment/\(detailFeedIdx)"
         
         let url = URL(string: urlString)!
         print(urlString)
