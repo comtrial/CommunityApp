@@ -25,4 +25,10 @@ class MainCoordinator: Coordinator {
         let vc = DetailViewController(viewModel: viewModel)
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func pushToPost() {
+        let pc = PostViewController()
+        navigationController?.pushViewController(pc, animated: true)
+    }
+    
 }
