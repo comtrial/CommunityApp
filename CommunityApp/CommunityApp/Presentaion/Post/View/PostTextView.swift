@@ -2,7 +2,7 @@ import UIKit
 
 class PostTextView : UIView {
 
-    let placeHolder = "우리 동네 관련된 질문이나 이야기를 해보세요."
+    //let placeHolder = "우리 동네 관련된 질문이나 이야기를 해보세요."
     private let scrollView: UIScrollView = {
         let view = UIScrollView()
         return view
@@ -11,7 +11,7 @@ class PostTextView : UIView {
         let view = UIView()
         return view
     }()
-    private let textView: UITextView = {
+    let textView: UITextView = {
         let view = UITextView()
         return view
     }()
@@ -58,7 +58,7 @@ class PostTextView : UIView {
         textView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
         textView.heightAnchor.constraint(equalToConstant: 650)
         ])
-        textView.text = placeHolder
+        //textView.text = placeHolder
         textView.backgroundColor = .white
         addKeyboardObserver()
     }
