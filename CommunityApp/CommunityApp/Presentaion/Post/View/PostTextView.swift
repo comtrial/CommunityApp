@@ -18,6 +18,7 @@ class PostTextView : UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .purple
         configureUI()
     }
     
@@ -56,7 +57,7 @@ class PostTextView : UIView {
         textView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
         textView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
         textView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
-        textView.heightAnchor.constraint(equalToConstant: 650)
+        textView.heightAnchor.constraint(equalToConstant: 520)
         ])
         //textView.text = placeHolder
         textView.backgroundColor = .white
@@ -78,15 +79,16 @@ class PostTextView : UIView {
     }
     
     @objc private func keyboardWillShow(_ notification: Notification) {
-        guard let userInfo = notification.userInfo,
-            let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
-                return
-        }
+//        guard let userInfo = notification.userInfo,
+//            let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
+//                return
+//        }
+        let textCursor = textView.selectedTextRange
         
         let contentInset = UIEdgeInsets(
             top: 0.0,
             left: 0.0,
-            bottom: keyboardFrame.size.height,
+            bottom: 0.0,//keyboardFrame.size.height,
             right: 0.0)
         scrollView.contentInset = contentInset
         scrollView.scrollIndicatorInsets = contentInset

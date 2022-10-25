@@ -18,6 +18,7 @@
 		1C4824B828EE95EE00C6DE45 /* CommentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4824B728EE95EE00C6DE45 /* CommentRepository.swift */; };
 		1C93264228FE829E007D94A3 /* PostTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C93264128FE829E007D94A3 /* PostTextView.swift */; };
 		1C93264528FE82E3007D94A3 /* UIResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C93264428FE82E3007D94A3 /* UIResponder.swift */; };
+		1CA64C2D290778CA008D77FD /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA64C2C290778CA008D77FD /* ImageCollectionViewCell.swift */; };
 		F645B47F28EC1D5D0019793E /* FeedsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F645B47E28EC1D5D0019793E /* FeedsUseCase.swift */; };
 		F645B48128EC369C0019793E /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F645B48028EC369C0019793E /* MainViewModel.swift */; };
 		F645B4D428EFF0440019793E /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F645B4D328EFF0440019793E /* DetailViewModel.swift */; };
@@ -51,6 +52,7 @@
 		1C4824B728EE95EE00C6DE45 /* CommentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRepository.swift; sourceTree = "<group>"; };
 		1C93264128FE829E007D94A3 /* PostTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTextView.swift; sourceTree = "<group>"; };
 		1C93264428FE82E3007D94A3 /* UIResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponder.swift; sourceTree = "<group>"; };
+		1CA64C2C290778CA008D77FD /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		F645B47E28EC1D5D0019793E /* FeedsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsUseCase.swift; sourceTree = "<group>"; };
 		F645B48028EC369C0019793E /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		F645B4D328EFF0440019793E /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
@@ -138,6 +140,14 @@
 				1C93264428FE82E3007D94A3 /* UIResponder.swift */,
 			);
 			path = UIResponder;
+			sourceTree = "<group>";
+		};
+		1CA64C2B2906DB3F008D77FD /* ImageCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				1CA64C2C290778CA008D77FD /* ImageCollectionViewCell.swift */,
+			);
+			path = ImageCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		F645B47628E99E3E0019793E /* Resource */ = {
@@ -246,6 +256,7 @@
 		F6797A5C28E9992900F6C9F0 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				1CA64C2B2906DB3F008D77FD /* ImageCollectionViewCell */,
 				1C419FD028F7E48200A3B43F /* MainViewCell */,
 				F6797A4328E9970C00F6C9F0 /* MainViewController.swift */,
 				F645B48028EC369C0019793E /* MainViewModel.swift */,
@@ -360,6 +371,7 @@
 				1C93264528FE82E3007D94A3 /* UIResponder.swift in Sources */,
 				F660B95E28F552CF00A39753 /* CommentList+TableView.swift in Sources */,
 				F6797A4428E9970C00F6C9F0 /* MainViewController.swift in Sources */,
+				1CA64C2D290778CA008D77FD /* ImageCollectionViewCell.swift in Sources */,
 				1C4824B428EE95A300C6DE45 /* FeedRepository.swift in Sources */,
 				F645B4D728F00DF00019793E /* LoadingView.swift in Sources */,
 				1C3AB95728FD760700E494C2 /* PostViewController.swift in Sources */,

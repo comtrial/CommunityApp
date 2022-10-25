@@ -6,7 +6,7 @@ struct Feed : Codable {
     var commentsNum : Int
     var writtenAt : String
     var tag : String
-    var thumbnailImages : [String]?
+    var thumbnailImages : [String]
     var moreButton : Bool
     var id : Int
     

@@ -4,8 +4,6 @@ import UIKit
 class MainViewCell: UITableViewCell, UITableViewDelegate {
 
     static let cellId = "CellId"
-    
-
     lazy var thumbnailPost : UILabel = {
         let thumbnailPost = UILabel()
         thumbnailPost.font = UIFont.boldSystemFont(ofSize: 16)
@@ -19,7 +17,6 @@ class MainViewCell: UITableViewCell, UITableViewDelegate {
         writtenAt.font = UIFont.boldSystemFont(ofSize: 12)
         return writtenAt
     }()
-        
     lazy var taglabel : UILabel = {
         let taglabel = UILabel()
         taglabel.backgroundColor = UIColor.gray
@@ -27,10 +24,45 @@ class MainViewCell: UITableViewCell, UITableViewDelegate {
         
         return taglabel
     }()
+    lazy var imageCollectionView : UICollectionView = {
+        let view = UICollectionView(frame: .zero, collectionViewLayout: imageCollectionViewFlowLayout)
+        view.isScrollEnabled = true
+        view.showsHorizontalScrollIndicator = false
+        view.showsVerticalScrollIndicator = true
+        view.contentInset = .zero
+        view.backgroundColor = .clear
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+
+    }()
+    
+    private let imageCollectionViewFlowLayout: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        //layout.itemSize = .init(width: cellWidth)
+        return layout
+    }()
+    
+    
+
+    
+    func conf(with data: [String]) {
+        for imageString in data {
+            let image = UIImage(named: imageString)!
+            self.data.append(image)
+        }
+    }
+    var data = [UIImage]()
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureUI()
+        setupImageCollectionView()
+        configureCollectionView()
     }
     
     
@@ -80,10 +112,50 @@ class MainViewCell: UITableViewCell, UITableViewDelegate {
             
         }
     
+    //MARK: CollectionView
+    func configureCollectionView() {
         
+        imageCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        imageCollectionView.backgroundColor = .gray
+        self.contentView.addSubview(imageCollectionView)
+        
+        imageCollectionView.topAnchor.constraint(equalTo: thumbnailPost.bottomAnchor, constant: 20).isActive = true
+        imageCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        imageCollectionView.bottomAnchor.constraint(equalTo: author.topAnchor, constant: -20).isActive = true
+        imageCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+    }
+    
+    func setupImageCollectionView() {
+        imageCollectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: "cellIdentifier")
+        imageCollectionView.delegate = self
+        imageCollectionView.dataSource = self
+        imageCollectionView.isPagingEnabled = true
+        imageCollectionView.showsHorizontalScrollIndicator = false
+    }
+    
     override func layoutSubviews() {
             super.layoutSubviews()
 
             contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 30, left: 0, bottom: 30, right: 0))
         }
+}
+
+extension MainViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return imageCollectionView.bounds.size
+        //CGSize(width: 200, height: 200)//셀의 크기
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return data.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "cellIdentifier", for: indexPath) as! ImageCollectionViewCell
+        
+        //cell.conf(with: data[indexPath.row])
+        cell.imageView.image = data[indexPath.row]
+        return cell
+    }
 }

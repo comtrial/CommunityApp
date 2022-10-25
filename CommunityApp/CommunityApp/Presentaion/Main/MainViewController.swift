@@ -8,7 +8,7 @@ class MainViewController: UIViewController {
 
     let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.rowHeight = 300
+        tableView.rowHeight = 450
         return tableView
     }()
     let loadingView = LoadingView()
@@ -17,12 +17,10 @@ class MainViewController: UIViewController {
         writeButton.layer.masksToBounds = true // true로 주면 버튼 안에 내용이 짤려서 보이게 할 수 있음
         writeButton.layer.cornerRadius = 25
         writeButton.backgroundColor = .systemOrange
-
         let image = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 32, weight: .medium))
         writeButton.setImage(image, for: .normal)
         writeButton.tintColor = .white
         writeButton.addTarget(self, action: #selector(btnClicked), for: .touchDown)
-                             
         return writeButton
     }()
 
@@ -91,6 +89,9 @@ class MainViewController: UIViewController {
             print(loading)
         }.store(in: &subscriber)
     }
+    
+    
+    let arr = ["뛰모","한강야경"]
 
 }
 
@@ -105,20 +106,14 @@ extension MainViewController:  UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MainViewCell.cellId, for: indexPath) as! MainViewCell
         
-        /* if thumbnailimages.count == 0 {
-            
-              } else {
-                cell.thumbnailimages
-            }
-    */
-    
-//        cell.thumbnailImage.image = viewModel.feeds![indexPath.row].thumbnailimages.map{ $0 } 
+
         cell.author.text = viewModel.feeds[indexPath.row].author
         cell.commentsNum.text = "댓글 : \(viewModel.feeds[indexPath.row].commentsNum)"
         cell.writtenAt.text = viewModel.feeds[indexPath.row].writtenAt
         cell.taglabel.text = viewModel.feeds[indexPath.row].tag
         cell.thumbnailPost.text = viewModel.feeds[indexPath.row].thumbnailPost
-
+        //cell.conf(with: viewModel.feeds[indexPath.row].thumbnailImages)
+        cell.conf(with: arr)
         return cell
     }
 }
