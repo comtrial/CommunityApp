@@ -14,7 +14,6 @@ extension UIResponder {
             to: nil,
             from: nil,
             for: nil)
-
         return firstResponder
     }
 

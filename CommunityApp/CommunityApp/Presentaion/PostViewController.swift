@@ -2,19 +2,32 @@ import UIKit
 
 class PostViewController: UIViewController {
     
-    let postView = PostTextView()
-    var popupButton = UIButton()
-    var imageButton = UIButton()
-    let imagePicker = UIImagePickerController()
-    var cnt = 0
-    let imageView = UIImageView()
-    var imagePostArr = [UIImage]()
+    static var completeButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(collectButtonPressed))
+        button.isEnabled = false
+        return button
+    }()
+    lazy var postView = PostTextView()
+    lazy var popupButton = UIButton()
+    lazy var imageButton = UIButton()
+    lazy var imagePicker = UIImagePickerController()
+    lazy var cnt = 0
+    lazy var imageView : UIImageView = {
+       let imageView = UIImageView()
+        imageView.backgroundColor = .gray
+        return imageView
+    }()
+    
+    var postViewModel: PostViewModel = .init()
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureUI()
-        
+        self.title = "동네생활 글쓰기"
     }
     
     func configureUI () {
@@ -28,12 +41,12 @@ class PostViewController: UIViewController {
         popupButton.layer.borderColor = UIColor.black.cgColor
         
         //POPUPButton Menu
-        let question = UIAction(title: "동네질문", handler: { _ in print("동네질문") })
-        let localNews = UIAction(title: "동네소식", handler: { _ in print("동네소식") })
-        let hobby = UIAction(title: "취미생활", handler: { _ in print("취미생활") })
-        let loss = UIAction(title: "분실/실종센터", handler: { _ in print("분실/실종센터") })
-        let please = UIAction(title: "해주세요", handler: { _ in print("해주세요") })
-        let photo = UIAction(title: "동네사진전", handler: { _ in print("동네사진전") })
+        let question = UIAction(title: "동네질문", handler: { _ in self.postViewModel.tagName = "동네질문"}) //postViewModel.tagName = "동네질문"
+        let localNews = UIAction(title: "동네소식", handler: { _ in self.postViewModel.tagName = "동네소식"})
+        let hobby = UIAction(title: "취미생활", handler: { _ in self.postViewModel.tagName = "취미생활" })
+        let loss = UIAction(title: "분실/실종센터", handler: { _ in self.postViewModel.tagName = "분실/실종센터"})
+        let please = UIAction(title: "해주세요", handler: { _ in self.postViewModel.tagName = "해주세요" })
+        let photo = UIAction(title: "동네사진전", handler: { _ in self.postViewModel.tagName = "동네사진전" })
         
         let buttonMenu = UIMenu(title: "게시글의 주제를 선택해 주세요.", children: [question, localNews, hobby, loss, please, photo])
         popupButton.menu = buttonMenu
@@ -45,6 +58,7 @@ class PostViewController: UIViewController {
         imageButton.setTitleColor(.black, for: .normal)
         imageButton.backgroundColor = .white
         imageButton.addTarget(self, action: #selector(uploadPhoto), for: .touchUpInside)
+        
         //MARK: IMAGEButton push on keyboard toolbar
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
@@ -52,7 +66,12 @@ class PostViewController: UIViewController {
         toolBar.items = [barImageButton]
         self.postView.textView.inputAccessoryView = toolBar
         
+        //MARK: NavigationVar Setting
+        self.title = "동네생활 글쓰기"
+        self.navigationItem.rightBarButtonItem = PostViewController.completeButton
         
+        
+        //MARK: AutoLayOut
         view.addSubview(postView)
         view.addSubview(popupButton)
         view.addSubview(imageView)
@@ -77,23 +96,28 @@ class PostViewController: UIViewController {
             //imageView
             imageView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 50),
             imageView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -50),
-            imageView.topAnchor.constraint(equalTo: popupButton.bottomAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: 150)
-            
-            
+            imageView.topAnchor.constraint(equalTo: popupButton.bottomAnchor, constant: 20),
+            imageView.heightAnchor.constraint(equalToConstant: 160)
         ])
-        
-        
     }
-    
     
     @objc func uploadPhoto() {
         actionSheetAlert()
     }
     
+    @objc func collectButtonPressed() {
+        postViewModel.completeText = postView.textView.text
+        self.navigationController?.popViewController(animated: true)
+        postViewModel.printprint()
+        postViewModel.requestOnlyImage()
+        
+        //postViewModel.requestPost2()
+    }
 }
 
 
+
+//MARK: ImagePicker
 extension PostViewController : UIImagePickerControllerDelegate , UINavigationControllerDelegate{
     
     func actionSheetAlert(){
@@ -112,7 +136,6 @@ extension PostViewController : UIImagePickerControllerDelegate , UINavigationCon
         alert.addAction(camera)
         alert.addAction(album)
         present(alert, animated: true, completion: nil)
-        
     }
     
     func presentCamera(){
@@ -132,23 +155,21 @@ extension PostViewController : UIImagePickerControllerDelegate , UINavigationCon
         present(vc, animated: true, completion: nil)
     }
     
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         print("picker -> \(String(describing: info[UIImagePickerController.InfoKey.imageURL]))")
    
         if cnt % 2 == 0 {
             if let image = info[.editedImage] as? UIImage {
                 imageView.image = image
-                imagePostArr.append(image)
+                postViewModel.postedImageArr.append(image)
             }
         }
         else{
             if let image = info[.originalImage] as? UIImage {
                 imageView.image = image
-                imagePostArr.append(image)
+                postViewModel.postedImageArr.append(image)
             }
         }
-        
         cnt += 1
         print(cnt)
         dismiss(animated: true, completion: nil)

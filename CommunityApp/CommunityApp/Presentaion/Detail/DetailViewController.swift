@@ -28,7 +28,6 @@ class DetailViewController: UIViewController {
         viewModel.fetchComments()
     }
     
-    
     func configureUI() {
         view.backgroundColor = .white
         

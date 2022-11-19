@@ -1,4 +1,3 @@
-
 import Foundation
 import Combine
 
@@ -31,7 +30,4 @@ class MainViewModel {
         }.store(in: &subscriber)
         
     }
-    
-    
-    
 }

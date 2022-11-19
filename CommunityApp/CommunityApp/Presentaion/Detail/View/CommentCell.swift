@@ -1,10 +1,3 @@
-//
-//  CommentCell.swift
-//  CommunityApp
-//
-//  Created by 최승원 on 2022/10/11.
-//
-
 import Foundation
 import UIKit
 
@@ -25,6 +18,8 @@ class CommentCell: UITableViewCell {
     }
     
     func configureUI(item: Comment) {
+        let safeArea = safeAreaLayoutGuide
+        
         self.authorTextLabel.text = item.author
         self.commentTextLabel.text = item.comment
         
@@ -41,5 +36,6 @@ class CommentCell: UITableViewCell {
         commentTextLabel.topAnchor.constraint(equalTo: authorTextLabel.bottomAnchor, constant: 8).isActive = true
         commentTextLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
         commentTextLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12).isActive = true
+        
     }
 }

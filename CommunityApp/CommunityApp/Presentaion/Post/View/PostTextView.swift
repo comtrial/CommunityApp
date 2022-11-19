@@ -2,7 +2,6 @@ import UIKit
 
 class PostTextView : UIView {
 
-    //let placeHolder = "우리 동네 관련된 질문이나 이야기를 해보세요."
     private let scrollView: UIScrollView = {
         let view = UIScrollView()
         return view
@@ -12,19 +11,23 @@ class PostTextView : UIView {
         return view
     }()
     let textView: UITextView = {
+        let placeHolder = "우리 동네 관련된 질문이나 이야기를 해보세요."
         let view = UITextView()
+        view.text = placeHolder
+        view.textColor = UIColor.lightGray
         return view
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .purple
+        self.backgroundColor = .white
+        textViewDelegate()
         configureUI()
     }
     
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func configureUI() {
         self.addSubview(scrollView)
@@ -49,21 +52,23 @@ class PostTextView : UIView {
         
         containerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
         containerView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
-//        let heightAnchor = containerView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
-//        heightAnchor.priority = .defaultHigh
-//        heightAnchor.isActive = true
-        
-        
+                
         textView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
         textView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
         textView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
-        textView.heightAnchor.constraint(equalToConstant: 520)
+        textView.heightAnchor.constraint(equalToConstant: 480)
         ])
         //textView.text = placeHolder
         textView.backgroundColor = .white
+        textView.layer.borderColor = UIColor.black.cgColor
+        textView.layer.borderWidth = 2
         addKeyboardObserver()
     }
     
+    func textViewDelegate() {
+        textView.delegate = self
+    }
+        
     private func addKeyboardObserver() {
         // Register Keyboard notifications
         NotificationCenter.default.addObserver(
@@ -83,7 +88,7 @@ class PostTextView : UIView {
 //            let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
 //                return
 //        }
-        let textCursor = textView.selectedTextRange
+       // let textCursor = textView.selectedTextRange
         
         let contentInset = UIEdgeInsets(
             top: 0.0,
@@ -106,3 +111,24 @@ class PostTextView : UIView {
         scrollView.scrollIndicatorInsets = contentInset
     }
 }
+
+extension PostTextView: UITextViewDelegate {
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+                PostViewController.completeButton.isEnabled = true
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "우리 동네 관련된 질문이나 이야기를 해보세요."
+            textView.textColor = UIColor.lightGray
+                PostViewController.completeButton.isEnabled = false
+        }
+    }
+}
+
+

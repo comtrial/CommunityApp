@@ -32,7 +32,7 @@ class DetailContentView: UIView {
             contentView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            contentView.heightAnchor.constraint(equalToConstant: 200)
+            contentView.heightAnchor.constraint(equalToConstant: 300)
         ])
         
         let footerView = drawFooterView()
@@ -40,7 +40,6 @@ class DetailContentView: UIView {
         footerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             footerView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 8),
-//            footerView.leadingAnchor.constraint(equalTo: leadingAnchor),
             footerView.trailingAnchor.constraint(equalTo: trailingAnchor),
             footerView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
@@ -58,7 +57,6 @@ class DetailContentView: UIView {
         commentNumLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             commentNumLabel.topAnchor.constraint(equalTo: footerView.topAnchor),
-//            commentNumLabel.leadingAnchor.constraint(equalTo: footerView.leadingAnchor),
             commentNumLabel.trailingAnchor.constraint(equalTo: footerView.trailingAnchor),
             commentNumLabel.bottomAnchor.constraint(equalTo: footerView.bottomAnchor)
         ])
@@ -66,9 +64,47 @@ class DetailContentView: UIView {
         return footerView
     }
     
+    
+    // 여기에 이미지뷰 넣기
     func drawContentView() -> UIView {
         let contentView = UIView()
         let contentTextView = UITextView()
+        let contentImageView: UIImageView = {
+            let ciView = UIImageView()
+            ciView.backgroundColor = .lightGray
+            return ciView
+        }()
+        
+        var imageURL: String = ""
+        
+        let images = detailFeedService?.images // 여기 수정하기
+        if images != nil {
+            imageURL = images![0]
+        }
+        
+        let url = URL(string: imageURL)
+        DispatchQueue.global().async {
+            let data = try? Data(contentsOf: url!)
+            DispatchQueue.main.async {
+                contentImageView.image = UIImage(data: data!)
+            }
+        }
+        
+//        guard let images = detailFeedService?.images else {
+//            print("Error : can't upload image")
+//            return
+//        }
+//        for image in images {
+//            let url = URL(string: image)
+//            do {
+//                let data = try Data(contentsOf: url!)
+//                contentImageView.image = UIImage(data: data)
+//            } catch {
+//                return
+//        }
+//   }
+        
+        
         
         let paraStyle = NSMutableParagraphStyle()
         let fontSize: CGFloat =  16
@@ -84,12 +120,21 @@ class DetailContentView: UIView {
         contentTextView.isEditable = false
         
         contentView.addSubview(contentTextView)
+        contentView.addSubview(contentImageView)
         contentTextView.translatesAutoresizingMaskIntoConstraints = false
+        contentImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             contentTextView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
             contentTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             contentTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            contentTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            contentTextView.bottomAnchor.constraint(equalTo: contentImageView.topAnchor),
+                
+            contentImageView.heightAnchor.constraint(equalToConstant: 110),
+            contentImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            contentImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            contentImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            
+            
         ])
         
         return contentView

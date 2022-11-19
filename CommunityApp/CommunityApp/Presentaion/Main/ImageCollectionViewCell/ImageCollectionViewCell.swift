@@ -14,6 +14,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
     var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        
         return imageView
     }()
     
@@ -29,9 +30,5 @@ class ImageCollectionViewCell: UICollectionViewCell {
         
         ])
     }
-    
-//    public func conf(with data: UIImage!){
-//        self.imageView.image = data
-//    }
-    
+
 }

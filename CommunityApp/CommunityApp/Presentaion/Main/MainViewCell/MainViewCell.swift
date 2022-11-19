@@ -1,4 +1,3 @@
-
 import UIKit
 
 class MainViewCell: UITableViewCell, UITableViewDelegate {
@@ -19,7 +18,7 @@ class MainViewCell: UITableViewCell, UITableViewDelegate {
     }()
     lazy var taglabel : UILabel = {
         let taglabel = UILabel()
-        taglabel.backgroundColor = UIColor.gray
+        taglabel.backgroundColor = UIColor.lightGray
         taglabel.font = UIFont.boldSystemFont(ofSize: 12)
         
         return taglabel
@@ -42,12 +41,8 @@ class MainViewCell: UITableViewCell, UITableViewDelegate {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        //layout.itemSize = .init(width: cellWidth)
         return layout
     }()
-    
-    
-
     
     func conf(with data: [String]) {
         for imageString in data {
@@ -100,8 +95,6 @@ class MainViewCell: UITableViewCell, UITableViewDelegate {
             
             writtenAt.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
             writtenAt.bottomAnchor.constraint(equalTo: commentsNum.topAnchor, constant: -15)
-            
-            
         ])
         
         commentsNum.sizeToFit()
@@ -144,7 +137,6 @@ extension MainViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UI
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return imageCollectionView.bounds.size
-        //CGSize(width: 200, height: 200)//셀의 크기
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -153,8 +145,6 @@ extension MainViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UI
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "cellIdentifier", for: indexPath) as! ImageCollectionViewCell
-        
-        //cell.conf(with: data[indexPath.row])
         cell.imageView.image = data[indexPath.row]
         return cell
     }

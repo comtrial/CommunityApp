@@ -24,7 +24,6 @@ class MainViewController: UIViewController {
         return writeButton
     }()
 
-
     init(viewModel: MainViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -37,14 +36,14 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
-        viewModel.load(page: 1)
+        viewModel.load(page: 2)
         attribute()
         configureUI()
+        viewModel.loading = true
+        configureRefreshControl()
         view.backgroundColor = .white
     }
     
-
-
     func attribute() {
         tableView.register(MainViewCell.self, forCellReuseIdentifier: MainViewCell.cellId)
         tableView.delegate = self
@@ -79,7 +78,6 @@ class MainViewController: UIViewController {
         coordinator?.pushToPost()
     }
     
-    
     //MARK: Binding
     func bind() {
         viewModel.$loading.sink { loading in
@@ -90,8 +88,27 @@ class MainViewController: UIViewController {
         }.store(in: &subscriber)
     }
     
+    func configureRefreshControl() {
+       // Add the refresh control to your UIScrollView object.
+       tableView.refreshControl = UIRefreshControl()
+       tableView.refreshControl?.addTarget(self, action:
+                                          #selector(handleRefreshControl),
+                                          for: .valueChanged)
+    }
+
+    @objc func handleRefreshControl() {
+       
+       DispatchQueue.main.async {
+           self.bind()
+           self.viewModel.load(page: 2)
+           self.attribute()
+           self.configureUI()
+          self.tableView.refreshControl?.endRefreshing()
+       }
+    }
     
-    let arr = ["뛰모","한강야경"]
+    
+    let arr: [String] = ["뛰모", "한강야경"]
 
 }
 
@@ -99,14 +116,13 @@ class MainViewController: UIViewController {
 // MARK: tableView DataProcess
 extension MainViewController:  UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         return viewModel.feeds.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MainViewCell.cellId, for: indexPath) as! MainViewCell
         
-
         cell.author.text = viewModel.feeds[indexPath.row].author
         cell.commentsNum.text = "댓글 : \(viewModel.feeds[indexPath.row].commentsNum)"
         cell.writtenAt.text = viewModel.feeds[indexPath.row].writtenAt
